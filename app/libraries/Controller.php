@@ -6,7 +6,13 @@
 
 class Controller {
 
-    // Load model
+    /**
+     * Loads a model into the controller
+     *
+     * @access public
+     * @param string $model
+     * @return void
+    */
     public function model($model) {
         // Require model file
         require_once "../app/models/" . $model . ".php";
@@ -16,7 +22,13 @@ class Controller {
 
     }
 
-    // Load view
+    /**
+     * Loads a view into the controller
+     *
+     * @access public
+     * @param string $model
+     * @return void
+    */
     public function view($view, $data=[]) {
         // Check for the view file
         if(file_exists("../app/views/" . $view . ".php")) {
