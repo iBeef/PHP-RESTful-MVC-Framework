@@ -21,11 +21,15 @@ class Router {
      * 
      * @access public
      * @return void
-    */
+     */
     public function __construct() {
         $this->url = '/' . $this->getUrl();
         $this->requestMethod = $this->getRequestMethod();
     }
+
+    /*
+        Callable functions.
+    */
 
     /**
      * Stores the GET route and user defined fucntion to the $getRoutes assoc array.
@@ -34,7 +38,7 @@ class Router {
      * @param string $route
      * @param  function $fn
      * @return void
-    */
+     */
     public function get($route, $fn) {
         $this->getRoutes[$route] = $fn; 
     }
@@ -46,7 +50,7 @@ class Router {
      * @param string $route
      * @param  function $fn
      * @return void
-    */
+     */
     public function post($route, $fn) {
         $this->postRoutes[$route] = $fn; 
     }
@@ -58,7 +62,7 @@ class Router {
      * @param string $route
      * @param  function $fn
      * @return void
-    */
+     */
     public function put($route, $fn) {
         $this->putRoutes[$route] = $fn; 
     }
@@ -70,7 +74,7 @@ class Router {
      * @param string $route
      * @param  function $fn
      * @return void
-    */
+     */
     public function delete($route, $fn) {
         $this->deleteRoutes[$route] = $fn; 
     }
@@ -80,7 +84,7 @@ class Router {
      *
      * @access public
      * @return void
-    */
+     */
     public function run() {
         $matchingRoute = FALSE;
         $routeType = strtolower($this->requestMethod) . "Routes";
@@ -100,12 +104,16 @@ class Router {
         echo (!$matchingRoute) ? "Page not found" : NULL;
     }
 
+    /*
+        Internal "Helper" functions
+    */
+
     /**
      * Fetches the url from index.php
      *
      * @access private
      * @return void
-    */
+     */
     private function getUrl() {
         if(isset($_GET['url'])) {
             $url = rtrim($_GET['url'], '/');
@@ -119,7 +127,7 @@ class Router {
      *
      * @access private
      * @return void
-    */
+     */
     private function getRequestMethod() {
         $requestMethod = strtolower($_SERVER['REQUEST_METHOD']);
         if($requestMethod == 'post' && isset($_POST['_method'])) {
@@ -140,7 +148,7 @@ class Router {
      * @param string $method
      * @param array $params
      * @return void
-    */
+     */
     public function loadController($controller, $method, $params=[]) {
         $controller = ucwords($controller);
         // Require the controller
@@ -157,7 +165,7 @@ class Router {
      * @access public
      * @param string $route
      * @return array, boolean
-    */
+     */
     private function matchRoutes($route) {
         $routeVars = array();
         $request = explode('/', $this->url);

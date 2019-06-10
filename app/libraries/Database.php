@@ -17,6 +17,13 @@ class Database {
     private $stmt;
     private $error;
 
+    /**
+     * Setup variables and database on class initialisation.
+     *
+     * @access public
+     * @access public
+     * @return void
+     */
     public function __construct() {
         // Set DSN
         $dsn = "mysql:host=$this->host;dbname=$this->dbName";
@@ -33,12 +40,27 @@ class Database {
         }
     }
 
-    // Prepare statement with query
+    /**
+     * Prepare a MYSQL statement.
+     *
+     * @access public
+     * @access public
+     * @param string $sql
+     * @return void
+     */
     public function query($sql) {
         $this->stmt = $this->dbh->prepare($sql);
     }
 
-    // Bind values
+    /**
+     * Bind a parameter to a named value in the statement.
+     *
+     * @access public
+     * @param string $param
+     * @param dynamic $value
+     * @param PDO::TYPE $type
+     * @return void
+     */
     public function bind($param, $value, $type=NULL) {
         if(is_null($type)) {
             switch(TRUE) {
@@ -58,24 +80,44 @@ class Database {
         $this->stmt->bindValue($param, $value, $type);
     }
 
-    // Execute the prepared statement
+    /**
+     * Execute the prepared statement
+     *
+     * @access public
+     * @return PDO::ResultSet
+     */
     public function execute() {
         return $this->stmt->execute();
     }
 
-    // Get result set as array of objects
+    /**
+     * Get result set as an array of objects
+     *
+     * @access public
+     * @return array
+     */
     public function resultSet() {
         $this->execute();
         return $this->stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
-    // Get single record as object
+    /**
+     * Get a single record as an object
+     *
+     * @access public
+     * @return object
+     */
     public function single() {
         $this->execute();
         return $this->stmt->fetch(PDO::FETCH_OBJ);
     }
 
-    // Get row count
+    /**
+     * Get the row count of the executed statement
+     *
+     * @access public
+     * @return int
+     */
     public function rowCount() {
         return $this->stmt->rowCount();
     }
