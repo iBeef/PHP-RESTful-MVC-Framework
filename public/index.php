@@ -3,12 +3,11 @@
 require_once '../app/bootstrap.php';
 
 // Init Router class
-
 $router = new Router();
 
 // An example of setting the index route.
 $router->get('/', function($response) {
-    $response->loadController('home', 'index');
+    $response->loadController('pages', 'index');
 });
 
 // Run the app

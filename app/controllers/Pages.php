@@ -1,12 +1,12 @@
 <?php
 
-class Home extends Controller {
+class Pages extends Controller {
 
     public function index() {
         $data = array(
             'title' => "RESTful MVC Framework"
         );
-        $this->view("home/index", $data);
+        $this->view("pages/index", $data);
     }
 
 }
