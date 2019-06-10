@@ -10,7 +10,7 @@ $router = new Router();
 
 // An example of setting the index route.
 $router->get('/', function($response) {
-    $response->loadController('home', 'index');
+    $response->loadController('pages', 'index');
 });
 
 // Run the app
@@ -33,11 +33,11 @@ $router->post('/posts', function($response) {
 });
 
 $router->put('/posts/(int:id)', function($response, $routeVars) {
-    $response->loadController('home', 'editPost', [$routeVars]);
+    $response->loadController('posts', 'editPost', [$routeVars]);
 });
 
 $router->delete('/posts/(int:id)', function($response, $routeVars) {
-    $response->loadController('home', 'deletePost', [$routeVars]);
+    $response->loadController('posts', 'deletePost', [$routeVars]);
 });
 
 ```
@@ -60,7 +60,7 @@ class Pages extends Controller {
         
         // Logic goes here
         
-        $this->view("home/post", $data);
+        $this->view("posts/post", $data);
     }
     
     // No dynamic route is being used so no need to pass $routeVars through
@@ -71,7 +71,7 @@ class Pages extends Controller {
         
         // Logic goes here
         
-        $this->view("pages/posts", $data);
+        $this->view("posts/posts", $data);
     }
 }
 ```
