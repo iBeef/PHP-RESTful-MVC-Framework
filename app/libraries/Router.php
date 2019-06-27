@@ -14,7 +14,10 @@ class Router {
     private $postRoutes = [];
     private $putRoutes = [];
     private $deleteRoutes = [];
-    private $wildCards = array('int' => '/^[0-9]+$/', 'any' => '/^[0-9A-Za-z]+$/');
+    private $wildCards = array(
+        'int' => '/^[0-9]+$/',
+        'any' => '/^[0-9A-Za-z]+$/'
+    );
 
     /**
      * Construct function - Fetches url and request method then the class is instaniated.
@@ -150,7 +153,7 @@ class Router {
      * @return void
      */
     public function loadController($controller, $method, $params=[]) {
-        $controller = ucwords($controller);
+        $controller = ucwords($controller) . "Controller";
         // Require the controller
         require_once "../app/controllers/" . $controller . ".php";
         // Instantiate the controller

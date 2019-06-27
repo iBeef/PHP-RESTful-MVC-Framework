@@ -1,6 +1,6 @@
 <?php
 
-class Pages extends Controller {
+class PageController extends Controller {
 
     public function index() {
         $data = array(

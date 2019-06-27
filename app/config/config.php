@@ -10,7 +10,8 @@ define("DB_NAME", '_YOUR_DB_NAME');
 define('APPROOT', dirname(dirname(__FILE__)));
 
 // URL Root
-define('URLROOT', "_YOUR_URL");
+$url = (!empty($_SERVER['HTTPS'])) ? "https://" : "http://" . $_SERVER['HTTP_HOST'];
+define('URLROOT', $url . "/Stock-Checker-Web");
 
 // Site Name
 define('SITENAME', '_YOUR_SITE_NAME');
