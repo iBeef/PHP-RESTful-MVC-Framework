@@ -10,7 +10,7 @@ $router = new Router();
 
 // An example of setting the index route.
 $router->get('/', function($response) {
-    $response->loadController('pages', 'index');
+    $response->loadController('page', 'index');
 });
 
 // Run the app
@@ -21,23 +21,23 @@ The $response variable allows the $router class to be passed back into the user 
 The Router class supports GET, POST, PUT and DELETE which all have their own fucntion as well as dynamic routes i.e "/posts/1 or /posts/34":
 ```
 $router->get('/posts', function($response) {
-    $response->loadController('posts', 'getPosts');
+    $response->loadController('post', 'getPosts');
 });
 
 $router->get('/posts/(int:id)', function($response, $routeVars) {
-    $response->loadController('posts', 'getPost', [$routeVars]);
+    $response->loadController('post', 'getPost', [$routeVars]);
 });
 
 $router->post('/posts', function($response) {
-    $response->loadController('posts', 'addPost');
+    $response->loadController('post', 'addPost');
 });
 
 $router->put('/posts/(int:id)', function($response, $routeVars) {
-    $response->loadController('posts', 'editPost', [$routeVars]);
+    $response->loadController('post', 'editPost', [$routeVars]);
 });
 
 $router->delete('/posts/(int:id)', function($response, $routeVars) {
-    $response->loadController('posts', 'deletePost', [$routeVars]);
+    $response->loadController('post', 'deletePost', [$routeVars]);
 });
 
 ```
@@ -50,7 +50,7 @@ If using a dynamic route then an array of the route variables will be passed bac
 ### Controller Logic
 You then just need to tell your controller if it should expect the route variables or not as follows:
 ```
-class Pages extends Controller {
+class PageController extends Controller {
 
     // Added $routeVars as an argument because a dynamic route is being used and passed through.
     public function getPost($routeVars) {
