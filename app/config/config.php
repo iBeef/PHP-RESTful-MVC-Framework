@@ -11,7 +11,7 @@ define('APPROOT', dirname(dirname(__FILE__)));
 
 // URL Root
 $url = (!empty($_SERVER['HTTPS'])) ? "https://" : "http://" . $_SERVER['HTTP_HOST'];
-define('URLROOT', $url . "/Stock-Checker-Web");
+define('URLROOT', $url . "/PHP-RESTful-MVC-Framework"); // Change to suit your route
 
 // Site Name
 define('SITENAME', '_YOUR_SITE_NAME');

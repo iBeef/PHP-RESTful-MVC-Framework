@@ -7,7 +7,7 @@ $router = new Router();
 
 // An example of setting the index route.
 $router->get('/', function($response) {
-    $response->loadController('pages', 'index');
+    $response->loadController('page', 'index');
 });
 
 // Run the app
